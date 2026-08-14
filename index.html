@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>고1 테스트 페이지</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+    }
+    .box {
+      background: rgba(255,255,255,0.1);
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.8rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      background: #4cc9f0;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #4895ef;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>🚀 GitHub Pages 테스트</h1>
+    <p>고1이랑 아빠가 같이 만든 첫 번째 페이지</p>
+    <p id="time"></p>
+    <button onclick="changeText()">눌러봐!</button>
+  </div>
+
+  <script>
+    // 현재 시간 표시
+    document.getElementById('time').textContent = 
+      new Date().toLocaleString('ko-KR');
+
+    function changeText() {
+      const messages = [
+        "와! 버튼이 작동하네?",
+        "이게 바로 프론트엔드야",
+        "GitHub에 올리면 이렇게 보여",
+        "바이브코딩 성공!"
+      ];
+      const random = messages[Math.floor(Math.random() * messages.length)];
+      document.querySelector('p').textContent = random;
+    }
+  </script>
+</body>
+</html>
