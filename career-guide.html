@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI 시대를 고려한 고등학생 진로·학과·IB 과목 선택 가족 가이드">
+  <title>AI 시대 진로 선택 | 가족 가이드</title>
+  <style>
+    :root{
+      --bg:#f7f9fc; --paper:#ffffff; --ink:#172033; --muted:#64748b;
+      --line:#e2e8f0; --navy:#183b66; --blue:#2563eb; --sky:#eaf3ff;
+      --green:#0f766e; --green-soft:#e7f7f3; --orange:#b45309; --orange-soft:#fff7e8;
+      --purple:#6d28d9; --purple-soft:#f4efff; --red:#b42318; --red-soft:#fff0ef;
+      --shadow:0 12px 35px rgba(24,59,102,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;
+      color:var(--ink); background:var(--bg); line-height:1.65;
+    }
+    a{color:inherit}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+    .topbar{
+      position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);
+      backdrop-filter:blur(10px);border-bottom:1px solid var(--line)
+    }
+    .topbar .inner{height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-weight:900;letter-spacing:-.03em;color:var(--navy);text-decoration:none}
+    nav{display:flex;gap:18px;font-size:14px;color:#475569;white-space:nowrap}
+    nav a{text-decoration:none}
+    nav a:hover{color:var(--blue)}
+    .hero{padding:72px 0 48px;background:linear-gradient(180deg,#fff 0%,#f2f7ff 100%)}
+    .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:54px;align-items:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;
+      background:var(--sky);color:var(--blue);font-weight:800;font-size:13px
+    }
+    h1{font-size:clamp(38px,6vw,66px);line-height:1.06;margin:18px 0;letter-spacing:-.055em}
+    .hero p{font-size:19px;color:#475569;max-width:700px}
+    .hero-note{
+      margin-top:22px;padding:16px 18px;border-radius:16px;background:#fff;border:1px solid #dbeafe;
+      color:#334155;font-size:15px
+    }
+    .hero-visual{
+      border-radius:28px;background:linear-gradient(150deg,#163a66,#275d9d 55%,#4f8bcc);
+      padding:24px;box-shadow:0 24px 70px rgba(24,59,102,.24);overflow:hidden
+    }
+    .hero-visual svg{display:block;width:100%;height:auto}
+    section{padding:74px 0}
+    section.white{background:#fff}
+    .section-head{max-width:780px;margin-bottom:32px}
+    .kicker{color:var(--blue);font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    h2{font-size:34px;line-height:1.18;letter-spacing:-.04em;margin:8px 0 12px}
+    h3{letter-spacing:-.03em;margin:0 0 8px}
+    .section-head p,.muted{color:var(--muted)}
+    .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .rank-card{
+      background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:22px;
+      box-shadow:var(--shadow);position:relative;overflow:hidden
+    }
+    .rank-card .num{
+      width:36px;height:36px;border-radius:12px;display:grid;place-items:center;color:#fff;
+      background:var(--navy);font-weight:900;margin-bottom:16px
+    }
+    .rank-card:nth-child(2) .num{background:var(--green)}
+    .rank-card:nth-child(3) .num{background:var(--purple)}
+    .rank-card:nth-child(4) .num{background:var(--orange)}
+    .rank-card p{font-size:14px;color:var(--muted);margin-bottom:0}
+    .callout{
+      margin-top:22px;border-radius:20px;padding:20px 22px;background:#101d33;color:#fff;
+      display:flex;gap:14px;align-items:flex-start
+    }
+    .callout strong{color:#8ec5ff}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px}
+    .panel.bad{background:linear-gradient(180deg,#fff,#fff8f7)}
+    .panel.good{background:linear-gradient(180deg,#fff,#f3fffb)}
+    .panel-icon{font-size:30px}
+    .clean-list{list-style:none;padding:0;margin:16px 0 0}
+    .clean-list li{padding:9px 0;border-top:1px solid var(--line);font-size:15px}
+    .clean-list li:first-child{border-top:none}
+    .criteria{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:24px}
+    .criterion{padding:18px;border:1px solid var(--line);border-radius:18px;background:#fff;text-align:center}
+    .criterion b{display:block;font-size:28px;margin-bottom:7px}
+    .criterion span{font-weight:800;font-size:14px}
+    .major-table-wrap{overflow:auto;border:1px solid var(--line);border-radius:22px;background:#fff}
+    table{width:100%;border-collapse:collapse;min-width:800px}
+    th,td{padding:16px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+    th{background:#f8fafc;color:#475569;font-size:13px}
+    td{font-size:14px}
+    .pill{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:800}
+    .p5{background:#e7f7f3;color:#0f766e}.p4{background:#eaf3ff;color:#1d4ed8}
+    .p3{background:#fff7e8;color:#a16207}.p2{background:#fff0ef;color:#b42318}
+    .pt-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .country{
+      border-radius:24px;padding:26px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)
+    }
+    .country h3{font-size:25px}
+    .country .flag{font-size:34px}
+    .fact{padding:12px 0;border-top:1px solid var(--line)}
+    .fact:first-of-type{border-top:0}
+    .fact b{display:block;margin-bottom:2px}
+    .warning{margin-top:20px;padding:17px 18px;border-radius:16px;background:var(--orange-soft);color:#7c4a03}
+    .ib-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .ib-card{border-radius:24px;padding:26px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+    .ib-card.recommended{border:2px solid #72a9ff}
+    .tag{font-size:12px;font-weight:900;letter-spacing:.04em;padding:5px 9px;border-radius:999px;background:var(--sky);color:var(--blue)}
+    .level{display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:start;margin-top:18px}
+    .level-label{font-weight:900;color:var(--navy);padding-top:5px}
+    .subjects{display:flex;flex-wrap:wrap;gap:8px}
+    .subject{padding:8px 10px;border-radius:12px;background:#f1f5f9;font-size:14px;font-weight:800}
+    .subject.hl{background:#eaf3ff;color:#1d4ed8}
+    .decision{display:grid;gap:12px}
+    .decision-row{
+      display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:12px;align-items:center;
+      padding:16px;border:1px solid var(--line);border-radius:16px;background:#fff
+    }
+    .yes,.no{text-align:center;padding:9px;border-radius:12px;font-size:13px;font-weight:900}
+    .yes{background:var(--green-soft);color:var(--green)}
+    .no{background:#f1f5f9;color:#475569}
+    .roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .road{border-radius:22px;padding:22px;background:#fff;border:1px solid var(--line)}
+    .road .step{font-weight:900;color:var(--blue);font-size:13px}
+    .road ul{padding-left:20px;color:#475569}
+    .meeting{background:linear-gradient(150deg,#12233f,#183b66);color:#fff}
+    .meeting .section-head p{color:#cbd5e1}
+    .check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .check{
+      border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);
+      border-radius:17px;padding:17px;display:flex;gap:12px;align-items:flex-start;cursor:pointer
+    }
+    .check input{margin-top:6px;transform:scale(1.2)}
+    .check small{display:block;color:#cbd5e1;margin-top:3px}
+    .meeting-result{margin-top:20px;padding:18px;border-radius:18px;background:#fff;color:var(--ink)}
+    .source-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .source{
+      text-decoration:none;border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff;
+      display:block
+    }
+    .source:hover{border-color:#9fc5ff;box-shadow:var(--shadow)}
+    .source b{display:block;margin-bottom:4px}
+    .source span{font-size:13px;color:var(--muted)}
+    footer{padding:36px 0 50px;color:#64748b;font-size:13px}
+    .tiny{font-size:12px;color:#94a3b8}
+    @media(max-width:900px){
+      nav{display:none}
+      .hero-grid,.split,.pt-grid,.ib-cards{grid-template-columns:1fr}
+      .summary-grid{grid-template-columns:repeat(2,1fr)}
+      .criteria{grid-template-columns:repeat(2,1fr)}
+      .roadmap{grid-template-columns:1fr}
+      .source-list{grid-template-columns:1fr}
+    }
+    @media(max-width:620px){
+      .wrap{padding:0 17px}
+      .hero{padding:48px 0 32px}
+      h1{font-size:42px}
+      h2{font-size:29px}
+      section{padding:56px 0}
+      .summary-grid,.check-grid{grid-template-columns:1fr}
+      .criteria{grid-template-columns:1fr 1fr}
+      .decision-row{grid-template-columns:1fr}
+      .yes,.no{text-align:left}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap inner">
+      <a class="brand" href="#top">AI × 진로 가족가이드</a>
+      <nav>
+        <a href="#summary">한눈 결론</a>
+        <a href="#ai">AI 기준</a>
+        <a href="#compare">전공 비교</a>
+        <a href="#pt">물리치료</a>
+        <a href="#ib">IB 선택</a>
+        <a href="#meeting">가족회의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">2026년 10월 기준 · 가족 의사결정용</span>
+          <h1>AI 시대,<br>어떤 전공을 선택해야 할까?</h1>
+          <p>
+            지금 좋아하는 과목만 보지 않고, <b>AI 발전 속도·30~40년 직업수명·해외 확장성·표선고 IBDP 과목 선택</b>을 함께 놓고 정리한 가족용 가이드입니다.
+          </p>
+          <div class="hero-note">
+            <b>현재의 잠정 결론</b><br>
+            물리치료·재활과학을 1차 진로축으로 두고, 수학이 크게 성장하면 의공학·재활로봇 쪽까지 확장하는 전략이 가장 균형적입니다.
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="사람의 몸, 물리, AI를 결합한 미래 진로 일러스트">
+          <svg viewBox="0 0 600 500" role="img">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1"><stop stop-color="#91c8ff"/><stop offset="1" stop-color="#b7f1e2"/></linearGradient>
+            </defs>
+            <circle cx="300" cy="245" r="185" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="2"/>
+            <circle cx="300" cy="245" r="125" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="2"/>
+            <g stroke="url(#g1)" stroke-width="5" fill="none" stroke-linecap="round">
+              <path d="M300 103 C250 120 224 161 222 210 C220 250 238 283 260 305"/>
+              <path d="M300 103 C350 120 376 161 378 210 C380 250 362 283 340 305"/>
+              <path d="M300 138 L300 318"/>
+              <path d="M260 305 L236 410"/>
+              <path d="M340 305 L364 410"/>
+              <path d="M222 211 L170 300"/>
+              <path d="M378 211 L430 300"/>
+            </g>
+            <g fill="#dff3ff" stroke="#ffffff" stroke-width="3">
+              <circle cx="300" cy="92" r="38"/>
+              <circle cx="223" cy="212" r="11"/><circle cx="377" cy="212" r="11"/>
+              <circle cx="260" cy="305" r="11"/><circle cx="340" cy="305" r="11"/>
+              <circle cx="236" cy="410" r="11"/><circle cx="364" cy="410" r="11"/>
+            </g>
+            <g fill="none" stroke="#9be7d6" stroke-width="3">
+              <path d="M70 120 H165 L205 160"/>
+              <path d="M530 128 H438 L397 170"/>
+              <path d="M82 372 H168 L207 338"/>
+              <path d="M518 375 H435 L394 340"/>
+            </g>
+            <g fill="#fff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">
+              <text x="48" y="105">BIOLOGY</text>
+              <text x="442" y="112">PHYSICS</text>
+              <text x="42" y="405">HUMAN</text>
+              <text x="453" y="408">AI</text>
+            </g>
+            <g fill="#91c8ff">
+              <circle cx="70" cy="120" r="6"/><circle cx="530" cy="128" r="6"/>
+              <circle cx="82" cy="372" r="6"/><circle cx="518" cy="375" r="6"/>
+            </g>
+            <rect x="215" y="438" width="170" height="42" rx="21" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.28)"/>
+            <text x="300" y="466" text-anchor="middle" fill="#fff" font-size="17" font-weight="800" font-family="system-ui, sans-serif">BODY × PHYSICS × AI</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <section id="summary" class="white">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">01 · 가족이 먼저 볼 결론</div>
+          <h2>현재 기준, 이렇게 좁혀볼 수 있습니다</h2>
+          <p>“AI 시대에 안전한가?”만 보지 않고 아이의 관심, 학업 부담, 면허의 힘, 해외 진출 가능성을 함께 본 순서입니다.</p>
+        </div>
+        <div class="summary-grid">
+          <article class="rank-card">
+            <div class="num">1</div>
+            <h3>물리치료·재활과학</h3>
+            <p>AI 내성, 고령화 수요, 사람의 몸을 직접 다루는 전문성, 해외 확장성이 고르게 좋습니다.</p>
+          </article>
+          <article class="rank-card">
+            <div class="num">2</div>
+            <h3>의공학·재활공학</h3>
+            <p>수학이 성장하고 공학 흥미가 커지면 1순위까지 올라갈 수 있는 미래형 선택입니다.</p>
+          </article>
+          <article class="rank-card">
+            <div class="num">3</div>
+            <h3>간호학</h3>
+            <p>고용 안정성과 해외 이동성은 매우 강하지만 교대·감정노동이 아이에게 맞는지 확인이 필요합니다.</p>
+          </article>
+          <article class="rank-card">
+            <div class="num">4</div>
+            <h3>로봇·기계·메카트로닉스</h3>
+            <p>성장성은 크지만 수학 난도와 산업 변화가 크므로 적성 확인이 특히 중요합니다.</p>
+          </article>
+        </div>
+        <div class="callout">
+          <div>💡</div>
+          <div><strong>핵심 원칙</strong><br>AI와 정면으로 경쟁하는 사람이 아니라, <b>AI에게 분석을 맡기고 현실 세계에서 판단·책임·실행하는 전문가</b>를 목표로 합니다.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">02 · AI를 가장 큰 변수로 놓으면</div>
+          <h2>디지털 업무는 빠르게, 현실 세계는 더 천천히 자동화됩니다</h2>
+          <p>2026 Stanford AI Index는 AI가 코딩·전문지식 벤치마크에서 매우 빠르게 발전하는 동시에, 실제 가정 환경의 로봇 작업은 여전히 큰 한계를 보인다고 정리합니다.</p>
+        </div>
+        <div class="split">
+          <article class="panel bad">
+            <div class="panel-icon">💻</div>
+            <h3>AI가 빠르게 파고드는 영역</h3>
+            <ul class="clean-list">
+              <li>문서 작성·요약·번역</li>
+              <li>기초 코딩과 반복 개발</li>
+              <li>정형화된 데이터 분석</li>
+              <li>콘텐츠 초안과 사무 업무</li>
+            </ul>
+          </article>
+          <article class="panel good">
+            <div class="panel-icon">🧑‍⚕️</div>
+            <h3>사람의 역할이 오래 남을 영역</h3>
+            <ul class="clean-list">
+              <li>환자의 몸을 직접 평가하고 치료</li>
+              <li>예측 불가능한 현실 환경에서 판단</li>
+              <li>면허와 법적 책임이 필요한 업무</li>
+              <li>신뢰·설명·동기부여가 필요한 돌봄</li>
+            </ul>
+          </article>
+        </div>
+        <div class="criteria">
+          <div class="criterion"><b>✋</b><span>현실 세계와 신체</span></div>
+          <div class="criterion"><b>🪪</b><span>면허·전문자격</span></div>
+          <div class="criterion"><b>🧠</b><span>상황 판단</span></div>
+          <div class="criterion"><b>🤝</b><span>사람과 신뢰</span></div>
+          <div class="criterion"><b>📈</b><span>고령화 수요</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="compare" class="white">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">03 · 전공 비교</div>
+          <h2>“좋은 전공”보다 “우리 아이에게 오래 맞는 전공”</h2>
+          <p>별점은 공식 통계가 아니라 지금까지의 대화와 현재 노동시장 자료를 바탕으로 가족 의사결정을 돕기 위한 상대적 평가입니다.</p>
+        </div>
+        <div class="major-table-wrap">
+          <table>
+            <thead>
+              <tr><th>전공</th><th>AI 대체 저항</th><th>장기 수요</th><th>아이 적합 가능성</th><th>해외 확장</th><th>주의점</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>물리치료·재활과학</b></td><td><span class="pill p5">매우 높음</span></td><td><span class="pill p5">매우 높음</span></td><td><span class="pill p5">높음</span></td><td><span class="pill p5">높음</span></td><td>국내 제도·체력 부담</td></tr>
+              <tr><td><b>의공학·재활공학</b></td><td><span class="pill p4">높음</span></td><td><span class="pill p4">높음</span></td><td><span class="pill p5">높음</span></td><td><span class="pill p4">높음</span></td><td>수학·공학 난도</td></tr>
+              <tr><td><b>간호학</b></td><td><span class="pill p5">매우 높음</span></td><td><span class="pill p5">매우 높음</span></td><td><span class="pill p3">보통</span></td><td><span class="pill p5">매우 높음</span></td><td>교대·감정노동</td></tr>
+              <tr><td><b>로봇·기계</b></td><td><span class="pill p4">높음</span></td><td><span class="pill p4">높음</span></td><td><span class="pill p4">높을 수 있음</span></td><td><span class="pill p4">높음</span></td><td>산업 변화·경쟁</td></tr>
+              <tr><td><b>AI·컴퓨터공학</b></td><td><span class="pill p3">중간~높음</span></td><td><span class="pill p4">높음</span></td><td><span class="pill p3">아직 미확인</span></td><td><span class="pill p5">매우 높음</span></td><td>AI가 직무 자체도 빠르게 변화</td></tr>
+              <tr><td><b>일반 경영·콘텐츠</b></td><td><span class="pill p2">중간 이하</span></td><td><span class="pill p3">분야별 차이</span></td><td><span class="pill p3">보통</span></td><td><span class="pill p3">보통</span></td><td>생성AI 직접 영향 큼</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="pt">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">04 · 왜 물리치료인가</div>
+          <h2>미래의 물리치료사는 “손기술만 쓰는 사람”이 아닙니다</h2>
+          <p>AI 보행 분석, 웨어러블 센서, 재활로봇을 활용하면서 해부·생리·운동역학과 임상 판단을 결합하는 직업으로 발전할 가능성이 큽니다.</p>
+        </div>
+        <div class="pt-grid">
+          <article class="country">
+            <div class="flag">🇰🇷</div>
+            <h3>한국</h3>
+            <div class="fact"><b>법적 자율성</b><span class="muted">독립적인 first-contact practitioner 구조가 아니며 direct access가 허용되지 않습니다.</span></div>
+            <div class="fact"><b>개원</b><span class="muted">물리치료 의료기관의 독립 개원 구조가 아닙니다.</span></div>
+            <div class="fact"><b>장점</b><span class="muted">국내 면허 기반 병원·재활기관·스포츠 분야 진출.</span></div>
+            <div class="fact"><b>한계</b><span class="muted">제도적 자율성과 수가·고용구조에서 해외와 차이가 큽니다.</span></div>
+          </article>
+          <article class="country">
+            <div class="flag">🇦🇺</div>
+            <h3>호주 등 해외</h3>
+            <div class="fact"><b>법적 자율성</b><span class="muted">호주는 환자가 의뢰 없이 직접 방문할 수 있고 평가·진단·치료가 가능한 자율적 practitioner 체계입니다.</span></div>
+            <div class="fact"><b>개원</b><span class="muted">Private practice가 제도적으로 가능합니다.</span></div>
+            <div class="fact"><b>시장</b><span class="muted">호주 JSA는 2025~2035년 물리치료사 고용을 33.6% 증가 직종으로 전망합니다.</span></div>
+            <div class="fact"><b>주의</b><span class="muted">고소득·영주권이 자동 보장되는 것은 아니며 영어·등록·비자 조건을 별도로 충족해야 합니다.</span></div>
+          </article>
+        </div>
+        <div class="warning"><b>중요:</b> “해외 물리치료사 = 무조건 고소득”으로 접근하지 않습니다. 매력의 핵심은 <b>직업 자율성, 재활 수요, 다양한 근무형태, AI와의 결합 가능성</b>입니다.</div>
+      </div>
+    </section>
+
+    <section id="ib" class="white">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">05 · 표선고 IBDP 과목 선택</div>
+          <h2>진로를 좁히되, 너무 일찍 문을 닫지는 않습니다</h2>
+          <p>표선고는 6과목 중 HL 3과목 + SL 3과목을 선택하며, 그룹6 대신 그룹3 또는 그룹4 과목을 추가할 수 있습니다. 표선고의 수학은 Math AA(분석과 접근) HL/SL입니다.</p>
+        </div>
+        <div class="ib-cards">
+          <article class="ib-card recommended">
+            <span class="tag">현재 1순위 추천안</span>
+            <h3 style="margin-top:14px">A. 물리치료·재활·보건 중심</h3>
+            <div class="level">
+              <div class="level-label">HL</div>
+              <div class="subjects"><span class="subject hl">Biology</span><span class="subject hl">Physics</span><span class="subject hl">English B</span></div>
+            </div>
+            <div class="level">
+              <div class="level-label">SL</div>
+              <div class="subjects"><span class="subject">Math AA</span><span class="subject">Korean A</span><span class="subject">Economics</span></div>
+            </div>
+            <p class="muted" style="margin-top:18px">인체·재활·운동과학과 해외 진학을 균형 있게 준비하면서 Math HL의 과도한 부담을 피하는 조합입니다.</p>
+          </article>
+          <article class="ib-card">
+            <span class="tag" style="background:var(--purple-soft);color:var(--purple)">수학이 크게 성장하면</span>
+            <h3 style="margin-top:14px">B. 공학까지 넓게 여는 안</h3>
+            <div class="level">
+              <div class="level-label">HL</div>
+              <div class="subjects"><span class="subject hl">Math AA</span><span class="subject hl">Physics</span><span class="subject hl">Biology</span></div>
+            </div>
+            <div class="level">
+              <div class="level-label">SL</div>
+              <div class="subjects"><span class="subject">English</span><span class="subject">Korean</span><span class="subject">Economics</span></div>
+            </div>
+            <p class="muted" style="margin-top:18px">의공학·재활공학·기계·항공우주까지 문을 넓게 남기는 대신 IB 학업강도가 크게 올라갑니다.</p>
+          </article>
+        </div>
+
+        <div style="margin-top:30px">
+          <h3>실제 해외 물리치료 입학요건과도 맞는가?</h3>
+          <p class="muted">예. Monash University 물리치료학과는 IB에서 Biology, Chemistry, Math AA, Physics 중 <b>두 과목</b>을 과학/수학 선수과목으로 인정하며, Math 자체가 별도 필수는 아닙니다. 즉 Biology + Physics 조합은 실제 지원요건과 잘 맞는 예시입니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">06 · 진로가 갈리는 지점</div>
+          <h2>앞으로 6~12개월 동안 세 가지만 확인합니다</h2>
+        </div>
+        <div class="decision">
+          <div class="decision-row">
+            <b>① 인체·근육·뼈·신경을 배우는 것이 재미있는가?</b>
+            <div class="yes">YES → 물리치료·재활 강화</div>
+            <div class="no">NO → 공학·다른 자연계 재검토</div>
+          </div>
+          <div class="decision-row">
+            <b>② 수학 실력이 크게 올라가고 공학을 더 하고 싶은가?</b>
+            <div class="yes">YES → 의공학·재활로봇 확장</div>
+            <div class="no">NO → Math AA SL 안정화</div>
+          </div>
+          <div class="decision-row">
+            <b>③ 사람을 직접 만나 설명하고 돕는 일이 괜찮은가?</b>
+            <div class="yes">YES → 임상·물리치료 적합성 ↑</div>
+            <div class="no">NO → 연구·공학 쪽 비중 ↑</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="white">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">07 · 고교 로드맵</div>
+          <h2>지금은 직업명을 확정하기보다 “진로축”을 검증할 때입니다</h2>
+        </div>
+        <div class="roadmap">
+          <article class="road">
+            <div class="step">지금 ~ 고1 겨울</div>
+            <h3>흥미 검증</h3>
+            <ul><li>해부·생리 기초 콘텐츠 접하기</li><li>Math AA 기초 체력 확인</li><li>물리치료·의공학 실제 수업 비교</li></ul>
+          </article>
+          <article class="road">
+            <div class="step">고2</div>
+            <h3>IB 탐구 연결</h3>
+            <ul><li>보행·근육 피로·관절·운동 탐구</li><li>IA/EE를 진로축과 연결</li><li>영어를 해외대 지원 수준으로 강화</li></ul>
+          </article>
+          <article class="road">
+            <div class="step">고2 말 ~ 고3</div>
+            <h3>진학 루트 확정</h3>
+            <ul><li>국내 vs 해외 대학 비교</li><li>면허·학비·영어·비자 조건 검토</li><li>물리치료 vs 의공학 최종 분기</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="meeting" class="meeting">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" style="color:#8ec5ff">08 · 가족회의 체크</div>
+          <h2>아이와 부모가 같이 체크해보세요</h2>
+          <p>정답을 정하는 표가 아니라, 다음 대화를 시작하기 위한 체크리스트입니다. 체크 상태는 이 기기 브라우저에 저장됩니다.</p>
+        </div>
+        <div class="check-grid">
+          <label class="check"><input type="checkbox" data-check><span><b>인체와 움직임이 궁금하다</b><small>근육·관절·신경·보행 같은 내용을 더 알고 싶다.</small></span></label>
+          <label class="check"><input type="checkbox" data-check><span><b>환자를 직접 돕는 일이 괜찮다</b><small>하루 동안 여러 사람을 만나고 설명하는 일을 할 수 있다.</small></span></label>
+          <label class="check"><input type="checkbox" data-check><span><b>물리와 과학 원리를 좋아한다</b><small>현상을 원리로 이해하고 문제를 해결하는 게 재미있다.</small></span></label>
+          <label class="check"><input type="checkbox" data-check><span><b>해외 대학·취업도 생각할 수 있다</b><small>영어와 해외 생활을 장기 옵션으로 열어둘 의향이 있다.</small></span></label>
+          <label class="check"><input type="checkbox" data-check><span><b>수학을 더 끌어올릴 의지가 있다</b><small>의공학·재활로봇까지 가기 위해 수학을 더 해볼 수 있다.</small></span></label>
+          <label class="check"><input type="checkbox" data-check><span><b>AI를 도구로 배우고 싶다</b><small>코딩 자체보다 의료·재활 문제에 AI를 적용하는 데 관심이 있다.</small></span></label>
+        </div>
+        <div class="meeting-result" id="meetingResult">
+          체크한 항목을 보면서 가족이 “왜 그렇게 생각했는지” 한 사람씩 이야기해보세요.
+        </div>
+      </div>
+    </section>
+
+    <section id="sources" class="white">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">09 · 근거와 공식 출처</div>
+          <h2>가족이 직접 확인할 수 있는 자료</h2>
+          <p>입시·면허·비자 제도는 바뀔 수 있으므로 실제 지원 시점에 최신 기준을 다시 확인해야 합니다.</p>
+        </div>
+        <div class="source-list">
+          <a class="source" target="_blank" rel="noopener" href="https://hai.stanford.edu/ai-index/2026-ai-index-report">
+            <b>Stanford HAI · 2026 AI Index</b><span>AI 성능, 노동시장, 로봇·에이전트 변화</span>
+          </a>
+          <a class="source" target="_blank" rel="noopener" href="https://www.who.int/news-room/fact-sheets/detail/rehabilitation">
+            <b>WHO · Rehabilitation</b><span>전 세계 24억 명의 재활 필요와 고령화 수요</span>
+          </a>
+          <a class="source" target="_blank" rel="noopener" href="https://www.bls.gov/ooh/healthcare/physical-therapists.htm">
+            <b>U.S. BLS · Physical Therapists</b><span>2025~2035년 고용 12% 증가 전망</span>
+          </a>
+          <a class="source" target="_blank" rel="noopener" href="https://www.jobsandskills.gov.au/data/employment-projections/occupation">
+            <b>Jobs and Skills Australia</b><span>호주 물리치료사 2025~2035년 33.6% 성장 전망</span>
+          </a>
+          <a class="source" target="_blank" rel="noopener" href="https://world.physio/membership/republic-of-korea">
+            <b>World Physiotherapy · Korea</b><span>한국 물리치료사의 direct access·자율성 현황</span>
+          </a>
+          <a class="source" target="_blank" rel="noopener" href="https://world.physio/membership/australia">
+            <b>World Physiotherapy · Australia</b><span>호주 direct access, 진단, private practice 현황</span>
+          </a>
+          <a class="source" target="_blank" rel="noopener" href="https://www.monash.edu/study/courses/find-a-course/physiotherapy-m3002">
+            <b>Monash · Physiotherapy</b><span>IB 선수과목과 실제 물리치료 교과 내용</span>
+          </a>
+          <a class="source" target="_blank" rel="noopener" href="https://school.jje.go.kr/jjps/cm/cntnts/cntntsView.do?cntntsId=10220038&mi=10203788">
+            <b>표선고 · IB 과목 선택</b><span>HL/SL 구조, 그룹6 대체, 실제 과목 선택 안내</span>
+          </a>
+          <a class="source" target="_blank" rel="noopener" href="https://school.jje.go.kr/jjps/cm/cntnts/cntntsView.do?cntntsId=10220039&mi=10203789">
+            <b>표선고 · 진로 희망별 선택 예시</b><span>공학·자연계 등 학교 공식 추천 예시</span>
+          </a>
+          <a class="source" target="_blank" rel="noopener" href="https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests">
+            <b>Ahpra · English Language Skills</b><span>호주 보건전문직 등록 영어시험 기준</span>
+          </a>
+        </div>
+        <p class="tiny" style="margin-top:20px">※ 이 사이트는 가족 진로 논의를 위한 정보 정리 자료이며, 특정 대학 합격·취업·비자·영주권을 보장하지 않습니다. 해외 대학 선수과목과 이민 규정은 지원 연도에 다시 확인하세요.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <b>AI 시대 진로 선택 가족 가이드</b><br>
+      표선고 IBDP 환경과 현재 진로 고민을 바탕으로 정리 · 2026년 10월
+    </div>
+  </footer>
+
+  <script>
+    const boxes = Array.from(document.querySelectorAll('[data-check]'));
+    const result = document.getElementById('meetingResult');
+    function refresh(){
+      const count = boxes.filter(b => b.checked).length;
+      localStorage.setItem('careerGuideChecks', JSON.stringify(boxes.map(b => b.checked)));
+      if(count <= 1) result.innerHTML = '<b>아직 탐색 단계입니다.</b> 직업을 정하기보다 생명과학·재활·공학을 직접 경험해보는 것이 먼저입니다.';
+      else if(count <= 3) result.innerHTML = '<b>가능성이 보입니다.</b> 물리치료와 의공학을 동시에 비교하면서, 특히 사람을 상대하는 일과 생명과학 흥미를 더 확인해보세요.';
+      else if(count <= 5) result.innerHTML = '<b>현재 진로축과 잘 맞는 편입니다.</b> Biology + Physics 중심의 IB 선택을 진지하게 검토할 만합니다.';
+      else result.innerHTML = '<b>Human Body × Physics × AI 방향과 매우 잘 맞습니다.</b> 물리치료·재활과학을 1차 축으로 두고 의공학·재활로봇까지 열어두는 전략을 검토해보세요.';
+    }
+    try{
+      const saved = JSON.parse(localStorage.getItem('careerGuideChecks') || '[]');
+      boxes.forEach((b,i) => b.checked = !!saved[i]);
+    }catch(e){}
+    boxes.forEach(b => b.addEventListener('change', refresh));
+    refresh();
+  </script>
+</body>
+</html>
